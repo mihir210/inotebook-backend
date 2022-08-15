@@ -3,14 +3,17 @@ const { Schema } = mongoose;
 
 
 const noteSchema = new Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user'
+    },
     title: {
         type: String,
         required: true
     },
     description: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     tag: {
         type: String,

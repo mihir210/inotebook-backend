@@ -4,7 +4,7 @@ const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const JWT_SECRET = "mihir";
-const fetchuser = require('../middleware/fetchuser');
+var fetchuser = require('../middleware/fetchuser');
 const router = express.Router();
 
 
@@ -96,7 +96,7 @@ router.post('/getuser', fetchuser, async(req, res) => {
 
         const userId = req.user.id;
 
-        const user = await User.findById(userId).select();
+        const user = await User.findById(userId).select("-password");
         res.send(user);
     } catch (error) {
         console.log(error.message);
